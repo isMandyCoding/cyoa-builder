@@ -2,6 +2,19 @@ const knex = require("../db/knex.js");
 
 module.exports = {
 
+    createRoute: (req, res) => {
+        knex('adventure_routes')
+            .insert({
+                route_title: req.body.route_title,
+                adventure_id: req.body.adventure_id,
+            })
+            .returning('id')
+            .then(newRoute => {
+                res.send(newRoute)
+            })
+            .catch(err => res.json(err))
+    },
+
     getAllRoutes: (req, res) => {
         knex('adventures')
             .select(
