@@ -8,6 +8,8 @@ module.exports = {
             .select('adventures.id as adventure_id',
                 'adventures.title',
                 'adventures.description',
+                'adventures.adv_votes',
+                'adventures.adv_img_url'
             )
             .orderBy('adv_votes')
 
@@ -91,7 +93,6 @@ module.exports = {
                         })
                     }
                 }
-
                 structuredAdv.tags = uniqueTags
 
                 const uniqueEditors = [];
@@ -190,5 +191,15 @@ module.exports = {
                 }
             })
             .catch(err => res.json("Houston, we have a problem: "))
+    },
+
+    deleteAdventure: (req, res) => {
+        knex('adventures')
+            .where('id', req.params.adventure_id)
+            .del()
+            .returning('id')
+            .then(result => {
+                res.send(result)
+            })
     }
 }
