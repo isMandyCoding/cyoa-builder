@@ -5328,57 +5328,68 @@ exports.seed = function (knex, Promise) {
         {
           "scene_id": 1,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 2,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 3,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 4,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 5,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 6,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 7,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 8,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 9,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 10,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 11,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 12,
@@ -6523,137 +6534,164 @@ exports.seed = function (knex, Promise) {
         {
           "scene_id": 240,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 241,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 242,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 243,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 244,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 245,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 246,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 247,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 248,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 249,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 250,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 251,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 252,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 253,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 254,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 255,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 256,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 257,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 258,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 259,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 260,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 261,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 262,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 263,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 264,
           "content": "Character: [asks a question]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 265,
           "content": "Example Dialgue Content: Character: \"Blah blah blah.",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         },
         {
           "scene_id": 266,
           "content": "Character: [does something]",
-          "sequence_number": 5
+          "sequence_number": 5,
+          "is_decision_point": true
         }
       ]);
     });

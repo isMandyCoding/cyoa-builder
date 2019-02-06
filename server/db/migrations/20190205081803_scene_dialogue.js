@@ -7,6 +7,8 @@ exports.up = function (knex, Promise) {
             .inTable('route_scenes')
             .onDelete('CASCADE')
             .index();
+        table.boolean('is_decision_point')
+            .defaultsTo(false)
         table.text('content')
         table.integer('sequence_number')
         table.timestamps(true, true);
