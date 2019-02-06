@@ -6,6 +6,12 @@
 const adventures = require('../controllers/adventures')
 
 module.exports = function (app) {
-    //route to get all adventures sorted by votes
+    //ROUTE TO GET ALL ADVENTURES SORTED BY VOTES
     app.get('/', adventures.getAllAdventures)
+
+    //LOGGED IN USERS ONLY
+    //ROUTE TO GET JUST ONE ADVENTURE
+    app.get('/adventures/:adventure_id', adventures.getOneAdventure)
+    //ROUTE TO ADD NEW ADVENTURE
+    app.post('/adventures/new', adventures.addNewAdventure)
 }

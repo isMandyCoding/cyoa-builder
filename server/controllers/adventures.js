@@ -37,7 +37,6 @@ module.exports = {
 
         Promise.all([allAdventures, adventureTags, adventureEditors])
             .then(results => {
-                console.log(results[2])
                 data = {
                     adventures: results[0],
                 }
@@ -49,4 +48,119 @@ module.exports = {
                 res.send(err)
             })
     },
+
+    getOneAdventure: (req, res) => {
+        knex('adventures')
+            .select('adventures.id as adventure_id',
+                'adventures.title',
+                'adventures.description',
+                'adventure_tags.tag_id as tag_id',
+                'tags.tag_name',
+                'adventure_editors.id as editor_id',
+                'users.username',
+                'adventure_editors.user_id'
+            )
+            .where('adventures.id', req.params.adventure_id)
+            .join('adventure_tags', 'adventure_tags.adventure_id', 'adventures.id')
+            .join('tags', 'tags.id', 'adventure_tags.tag_id')
+            .join('adventure_editors', 'adventure_editors.adventure_id', 'adventures.id')
+            .join('users', 'users.id', 'adventure_editors.user_id')
+            .then(adventure => {
+
+                let structuredAdv = {
+                    ...adventure[0],
+                    tags:
+                        adventure.map(theAdventure => {
+
+                            return {
+                                ...adventure[0].tags,
+                                [theAdventure.tag_id]: theAdventure.tag_name
+                            }
+                        })
+                }
+
+                res.send(structuredAdv)
+            })
+            .catch(err => res.send(err))
+
+    },
+    addNewAdventure: (req, res) => {
+        let inserIntoAdventures = knex('adventures')
+            .insert({
+                title: req.body.title,
+                description: req.body.description,
+                adv_img_url: req.body.adv_img_url,
+            })
+            .returning('id as adventure_id')
+
+        let tags = knex('tags')
+            .whereIn('tag_name', req.body.tags) //req.body.tags is an array of strings
+
+        Promise.all([inserIntoAdventures, tags])
+
+            .then(results => {
+                if (results[1].length < req.body.tags.length) {
+                    let newAdventure = results[0][0]
+                    let tagsToInsert = req.body.tags
+                        .map(tag => { return { tag_name: tag } })
+
+                    knex('tags')
+                        .insert(tagsToInsert)
+                        .returning('id')
+                        .then(result => {
+                            let tags = result.map(tag => { return { adventure_id: newAdventure, tag_id: tag } })
+                            knex('adventure_tags')
+                                .insert(tags)
+                                .returning('adventure_id')
+                                .then(result => {
+                                    let newAdventureID = result[0]
+
+                                    knex('adventure_editors')
+                                        .insert({
+                                            adventure_id: result[0],
+                                            user_id: req.body.user_id
+                                        })
+                                        .returning('adventure_id')
+                                        .then(result => {
+                                            knex('adventures')
+                                                .select('id as adventure_id', 'adventures.*')
+                                                .where('id', result[0])
+                                                .then(result => {
+                                                    res.send(result)
+                                                })
+                                        })
+                                        .catch(err => res.send("There was an error with finding the newly created Adventure"))
+
+                                })
+                                .catch(() => res.send("there was an error with adding to the adventure tags table"))
+                        })
+                        .catch(err => res.send("Guess what, there was an error in our insert into tags"))
+                } else {
+                    let newAdventure = results[0][0];
+                    let tags = results[1].map(tag => { return { adventure_id: newAdventure, tag_id: tag.id } })
+                    knex('adventure_tags')
+                        .insert(tags)
+                        .returning('adventure_id')
+                        .then(result => {
+                            knex('adventure_editors')
+                                .insert({
+                                    adventure_id: result[0],
+                                    user_id: req.body.user_id
+                                })
+                                .returning('adventure_id')
+                                .then(result => {
+                                    knex('adventures')
+                                        .select('id as adventure_id', 'adventures.*')
+                                        .where('id', result[0])
+                                        .then(newAdventure => {
+                                            res.send(newAdventure)
+                                        })
+                                })
+                                .catch(err => res.send("There was an error with finding the newly created Adventure"))
+                        })
+                        .catch(err => res.json("there was an error with adding to the adventure_editors table"))
+                }
+            })
+            .catch(err => res.json("Houston, we have a problem: "))
+    }
 }
