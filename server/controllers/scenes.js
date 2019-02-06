@@ -9,10 +9,15 @@ module.exports = {
                 'route_scenes.scene_img_url',
                 'scene_dialogue.id as dialogue_id',
                 'scene_dialogue.content',
-                'scene_dialogue.sequence_number'
+                'scene_dialogue.sequence_number',
+                'scene_comments.id as scene_comment_id',
+                'scene_comments.user_id',
+                'scene_comments.content',
+                'scene_comments.votes'
             )
             .where('route_scenes.id', req.params.scene_id)
             .join('scene_dialogue', 'scene_dialogue.scene_id', 'route_scenes.id')
+            .join('scene_comments', 'scene_comments.scene_id', 'route_scenes.id')
             .then(results => {
                 let structuredScene = results.reduce((acc, currScene) => {
                     acc = {
@@ -23,7 +28,11 @@ module.exports = {
                             }) :
                             [{
                                 dialogue_id: currScene.dialogue_id, content: currScene.content, sequence_number: currScene.sequence_number
-                            }]
+                            }],
+                        comments: acc.comments ?
+                            acc.comments.concat({ coment_id: currScene.comment_id, user_id: currScene.user_id, content: currScene.content, votes: currScene.votes }) :
+                            [{ coment_id: currScene.comment_id, user_id: currScene.user_id, content: currScene.content, votes: currScene.votes }]
+
                     }
                     return acc
                 }, { ...results[0] })
