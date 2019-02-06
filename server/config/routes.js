@@ -25,5 +25,9 @@ module.exports = function (app) {
     app.get('/adventures/routes/one/:route_id', adventure_routes.getRoute)
     //ROUTE TO GET SINGLE SCENE AND ALL ASSOCIATED DIALOGUE
     app.get('/adventures/scenes/:scene_id', route_scenes.getScene)
+    //ROUTE TO ADD A NEW SCENE
+    app.post('/adventures/scenes/new', route_scenes.addScene)
+    //route to delete scene
+    app.get('/adventures/scenes/delete/:scene_id', route_scenes.deleteScene)
 
 }

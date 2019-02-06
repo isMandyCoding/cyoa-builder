@@ -40,5 +40,26 @@ module.exports = {
             })
             .catch(err => res.send(err))
 
+    },
+    addScene: (req, res) => {
+        knex('route_scenes')
+            .insert({
+                route_id: Number(req.body.route_id),
+                scene_img_url: req.body.scene_img_url
+            })
+            .returning('route_scenes.*')
+            .then(result => {
+                res.send(result)
+            })
+            .catch(err => res.json(err))
+    },
+    deleteScene: (req, res) => {
+        knex('route_scenes')
+            .where('id', req.params.scene_id)
+            .del()
+            .returning('id')
+            .then(deletedId => {
+                res.send(deletedId)
+            })
     }
 }
