@@ -61,5 +61,25 @@ module.exports = {
             .then(deletedId => {
                 res.send(deletedId)
             })
+    },
+    deleteDialogue: (req, res) => {
+        knex('scene_dialogue')
+            .where('id', req.params.dialogue_id)
+            .del()
+            .returning('id')
+            .then(deletedId => {
+                res.send(deletedId)
+            })
+            .catch(err => res.json(err))
+    },
+    deleteComment: (req, res) => {
+        knex('scene_comments')
+            .where('id', req.params.comment_id)
+            .del()
+            .returning('id')
+            .then(deletedId => {
+                res.send(deletedId)
+            })
+            .catch(err => res.json(err))
     }
 }

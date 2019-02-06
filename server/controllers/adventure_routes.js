@@ -63,6 +63,15 @@ module.exports = {
                 res.send(structuredScenes)
             })
             .catch(err => res.send(err))
+    },
+    deleteRoute: (req, res) => {
+        knex('adventure_routes')
+            .where('id', req.params.route_id)
+            .del()
+            .returning('id')
+            .then(deletedId => {
+                res.send(deletedId)
+            })
     }
 
 

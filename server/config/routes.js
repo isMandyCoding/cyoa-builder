@@ -23,11 +23,19 @@ module.exports = function (app) {
     app.get('/adventures/routes/:adventure_id', adventure_routes.getAllRoutes)
     //ROUTE TO GET SINGLE ROUTE AND ALL ASSOCIATED SCENES
     app.get('/adventures/routes/one/:route_id', adventure_routes.getRoute)
+    //ROUTE TO DELETE A ROUTE
+    app.delete('/adventures/routes/delete/:route_id', adventure_routes.deleteRoute)
+
     //ROUTE TO GET SINGLE SCENE AND ALL ASSOCIATED DIALOGUE
     app.get('/adventures/scenes/:scene_id', route_scenes.getScene)
     //ROUTE TO ADD A NEW SCENE
     app.post('/adventures/scenes/new', route_scenes.addScene)
     //route to delete scene
     app.get('/adventures/scenes/delete/:scene_id', route_scenes.deleteScene)
+    //route to delete scene dialogue
+    app.delete('/adventures/scenes/dialogue/delete/:dialogue_id', route_scenes.deleteDialogue)
+
+    //route to delete a scene comment
+    app.delete('/adventures/scenes/comments/delete/:comment_id', route_scenes.deleteComment)
 
 }
