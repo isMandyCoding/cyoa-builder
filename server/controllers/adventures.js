@@ -67,21 +67,49 @@ module.exports = {
             .join('users', 'users.id', 'adventure_editors.user_id')
             .then(adventure => {
 
-                let structuredAdv = {
-                    ...adventure[0],
-                    tags:
-                        adventure.map(theAdventure => {
+                let structuredAdv = adventure.reduce((acc, currAdv) => {
+                    acc = {
+                        ...acc,
+                        tags: acc.tags ?
+                            acc.tags.concat({ tag_name: currAdv.tag_name, tag_id: currAdv.tag_id }) :
+                            [{ tag_name: currAdv.tag_name, tag_id: currAdv.tag_id }],
+                        editors: acc.editors ?
+                            acc.editors.concat({ username: currAdv.username, user_id: currAdv.user_id }) :
+                            [{ username: currAdv.username, user_id: currAdv.user_id }]
+                    }
+                    return acc
+                }, { ...adventure[0] })
 
-                            return {
-                                ...adventure[0].tags,
-                                [theAdventure.tag_id]: theAdventure.tag_name
-                            }
+                const uniqueTags = [];
+                const map = new Map();
+                for (const item of structuredAdv.tags) {
+                    if (!map.has(item.tag_id)) {
+                        map.set(item.tag_id, true);
+                        uniqueTags.push({
+                            tag_id: item.tag_id,
+                            tag_name: item.tag_name
                         })
+                    }
                 }
+
+                structuredAdv.tags = uniqueTags
+
+                const uniqueEditors = [];
+                const editorMap = new Map();
+                for (const item of structuredAdv.editors) {
+                    if (!editorMap.has(item.user_id)) {
+                        editorMap.set(item.user_id, true);
+                        uniqueEditors.push({
+                            user_id: item.user_id,
+                            username: item.username
+                        })
+                    }
+                }
+                structuredAdv.editors = uniqueEditors
 
                 res.send(structuredAdv)
             })
-            .catch(err => res.send(err))
+            .catch(err => res.send("What?"))
 
     },
     addNewAdventure: (req, res) => {
