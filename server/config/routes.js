@@ -5,6 +5,7 @@
 
 const adventures = require('../controllers/adventures')
 const adventure_routes = require('../controllers/adventure_routes')
+const route_scenes = require('../controllers/scenes')
 
 module.exports = function (app) {
     //ROUTE TO GET ALL ADVENTURES SORTED BY VOTES
@@ -22,5 +23,7 @@ module.exports = function (app) {
     app.get('/adventures/routes/:adventure_id', adventure_routes.getAllRoutes)
     //ROUTE TO GET SINGLE ROUTE AND ALL ASSOCIATED SCENES
     app.get('/adventures/routes/one/:route_id', adventure_routes.getRoute)
+    //ROUTE TO GET SINGLE SCENE AND ALL ASSOCIATED DIALOGUE
+    app.get('/adventures/scenes/:scene_id', route_scenes.getScene)
 
 }
