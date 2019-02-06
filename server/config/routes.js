@@ -6,6 +6,8 @@
 const adventures = require('../controllers/adventures')
 const adventure_routes = require('../controllers/adventure_routes')
 const route_scenes = require('../controllers/scenes')
+const dialogue_decisions = require('../controllers/dialogue_decisions')
+
 
 module.exports = function (app) {
     //ROUTE TO GET ALL ADVENTURES SORTED BY VOTES
@@ -37,5 +39,8 @@ module.exports = function (app) {
 
     //route to delete a scene comment
     app.delete('/adventures/scenes/comments/delete/:comment_id', route_scenes.deleteComment)
+
+    //route to get a single piece of dialogue and their associated decisions
+    app.get('/adventures/dialogue/:dialogue_id', dialogue_decisions.getDecisions)
 
 }
