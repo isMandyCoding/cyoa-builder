@@ -27,3 +27,16 @@ export const getAdventures = () => {
 
 }
 
+export const GET_ADVENTURE = 'GET_ADVENTURE'
+export const getAdventure = id => {
+    return async dispatch => {
+        fetch(`http://127.0.0.1:8000/adventures/${id}`)
+            .then(response => response.json())
+            .then(adventure => {
+                dispatch({
+                    type: GET_ADVENTURE,
+                    payload: adventure
+                })
+            })
+    }
+}

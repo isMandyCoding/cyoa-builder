@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Adventure from './Adventure'
+import { Row } from 'reactstrap'
 
 class AdventuresList extends Component {
     componentDidMount() {
@@ -12,7 +13,9 @@ class AdventuresList extends Component {
             return (
                 <div>
                     <h1>Come dive into an adventure!</h1>
-                    {adventures.map(adventure => <Adventure key={adventure.adventure_id} adventure={adventure} />)}
+                    <Row>
+                        {adventures.map(adventure => <Adventure key={adventure.adventure_id} adventure={adventure} />)}
+                    </Row>
                 </div>
             )
         }
