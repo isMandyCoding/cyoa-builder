@@ -8,7 +8,7 @@ module.exports = {
                 route_title: req.body.route_title,
                 adventure_id: req.body.adventure_id,
             })
-            .returning('id')
+            .returning('id    ')
             .then(newRoute => {
                 res.send(newRoute)
             })
@@ -77,6 +77,7 @@ module.exports = {
             })
             .catch(err => res.send(err))
     },
+
     deleteRoute: (req, res) => {
         knex('adventure_routes')
             .where('id', req.params.route_id)
