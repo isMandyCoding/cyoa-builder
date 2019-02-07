@@ -10,3 +10,20 @@
 //     })
 //   }
 // }
+
+export const GET_ADVENTURES = 'GET_ADVENTURES';
+export const getAdventures = () => {
+    return async dispatch => {
+        fetch('http://127.0.0.1:8000/index')
+            .then(response => response.json())
+            .then(adventures => {
+                dispatch({
+                    type: GET_ADVENTURES,
+                    payload: adventures.adventures
+                })
+            })
+            .catch(err => console.log(err))
+    }
+
+}
+

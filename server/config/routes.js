@@ -11,7 +11,7 @@ const dialogue_decisions = require('../controllers/dialogue_decisions')
 
 module.exports = function (app) {
     //ROUTE TO GET ALL ADVENTURES SORTED BY VOTES
-    app.get('/', adventures.getAllAdventures)
+    app.get('/index', adventures.getAllAdventures)
 
     //LOGGED IN USERS ONLY
     //ROUTE TO GET JUST ONE ADVENTURE
