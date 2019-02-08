@@ -40,3 +40,5 @@ export const getAdventure = id => {
             })
     }
 }
+
+export const ADD_ADVENTURE = 'ADD_ADVENTURE'
