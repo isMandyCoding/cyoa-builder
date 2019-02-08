@@ -1,4 +1,4 @@
-import { GET_ADVENTURES, GET_ADVENTURE, ADD_ADVENTURE, ADVENTURE_ERROR } from '../actions/adventures'
+import { GET_ADVENTURES, GET_ADVENTURE, ADD_ADVENTURE, ADVENTURE_ERROR, UPVOTE_ADV, DOWNVOTE_ADV } from '../actions/adventures'
 
 const initialState = {
     fetchingAdventures: true,
@@ -30,6 +30,26 @@ export const adventures = (state = initialState, action) => {
             return {
                 ...state,
                 fetchError: true
+            }
+        case UPVOTE_ADV:
+            return {
+                ...state,
+                adventures: state.adventures.map(adventure => {
+                    return {
+                        ...adventure,
+                        adv_votes: adventure.adv_votes + 1
+                    }
+                })
+            }
+        case DOWNVOTE_ADV:
+            return {
+                ...state,
+                adventures: state.adventures.map(adventure => {
+                    return {
+                        ...adventure,
+                        adv_downvotes: adventure.adv_downvotes + 1
+                    }
+                })
             }
         default:
             return state

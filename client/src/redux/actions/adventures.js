@@ -55,3 +55,37 @@ export const addAdventure = newAdventure => {
             })
     }
 }
+
+export const UPVOTE_ADV = 'UPVOTE_ADV'
+export const upVoteAdventure = id => {
+    return async dispatch => {
+        fetch(`http://127.0.0.1:8000/adventures/upvote/${id}`, {
+            method: 'PATCH'
+        })
+            .then(response => {
+                dispatch({
+                    type: UPVOTE_ADV,
+                    payload: response[0]
+                })
+            })
+            .catch(err => console.log(err))
+    }
+}
+
+export const DOWNVOTE_ADV = 'DOWNVOTE_ADV'
+export const downVoteAdventure = id => {
+    return async dispatch => {
+        fetch(`http://127.0.0.1:8000/adventures/downvote/${id}`, {
+            method: 'PATCH'
+        })
+            .then(response => response.json())
+            .then(response => {
+                console.log("downvoted id: ", response[0])
+                dispatch({
+                    type: DOWNVOTE_ADV,
+                    payload: response[0]
+                })
+            })
+            .catch(err => console.log(err))
+    }
+}
