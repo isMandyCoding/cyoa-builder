@@ -62,6 +62,7 @@ export const upVoteAdventure = id => {
         fetch(`http://127.0.0.1:8000/adventures/upvote/${id}`, {
             method: 'PATCH'
         })
+            .then(response => response.json())
             .then(response => {
                 dispatch({
                     type: UPVOTE_ADV,

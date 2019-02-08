@@ -37,7 +37,9 @@ export const adventures = (state = initialState, action) => {
                 adventures: state.adventures.map(adventure => {
                     return {
                         ...adventure,
-                        adv_votes: adventure.adv_votes + 1
+                        adv_votes: adventure.adventure_id == action.payload ?
+                            adventure.adv_votes + 1 :
+                            adventure.adv_votes
                     }
                 })
             }
@@ -47,7 +49,9 @@ export const adventures = (state = initialState, action) => {
                 adventures: state.adventures.map(adventure => {
                     return {
                         ...adventure,
-                        adv_downvotes: adventure.adv_downvotes + 1
+                        adv_downvotes: adventure.adventure_id == action.payload ?
+                            adventure.adv_downvotes + 1 :
+                            adventure.adv_downvotes
                     }
                 })
             }
