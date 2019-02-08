@@ -8,13 +8,15 @@ class AdventuresList extends Component {
     }
     render() {
         const { adventures, fetchingAdventures } = this.props
+        const sortedAdventures = adventures ? adventures.sort((a, b) => b.adv_votes - a.adv_votes) :
+            null
         if (fetchingAdventures) return <div>Loading...</div>
-        if (adventures) {
+        if (sortedAdventures) {
             return (
                 <div>
                     <h1>Come dive into an adventure!</h1>
                     <Row>
-                        {adventures.map(adventure => <Adventure key={adventure.adventure_id} adventure={adventure} />)}
+                        {sortedAdventures.map(adventure => <Adventure key={adventure.adventure_id} adventure={adventure} />)}
                     </Row>
                 </div>
             )
