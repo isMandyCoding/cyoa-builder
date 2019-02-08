@@ -22,6 +22,7 @@ class Adventure extends Component {
                             <CardImg width="100%" src={adventure.adv_img_url} alt={adventure.title} />
                             <CardBody>
                                 <CardText>{adventure.description}</CardText>
+                                <CardText><i class="material-icons">thumb_up</i> {adventure.adv_votes} <i class="material-icons">thumb_down</i> {adventure.adv_downvotes} </CardText>
                                 {/* <Button onClick={() => history.replace(`adventures/${adventure.adventure_id}`)} >Go On Adventure!</Button> */}
                                 <CardLink> <Link to={`/adventures/${adventure.adventure_id}`} >Go On Adventure!</Link> </CardLink>
                                 <CardLink href="#">Another Link</CardLink>

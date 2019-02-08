@@ -9,6 +9,7 @@ module.exports = {
                 'adventures.title',
                 'adventures.description',
                 'adventures.adv_votes',
+                'adventures.adv_downvotes',
                 'adventures.adv_img_url'
             )
             .orderBy('adv_votes')
@@ -192,6 +193,26 @@ module.exports = {
                 }
             })
             .catch(err => res.json("Houston, we have a problem: "))
+    },
+
+    upVoteAdventure: (req, res) => {
+        knex('adventures')
+            .where('id', req.params.adventure_id)
+            .increment('adv_votes', 1)
+            .returning('id')
+            .then(updatedId => {
+                res.send(updatedId)
+            })
+    },
+
+    downVoteAdventure: (req, res) => {
+        knex('adventures')
+            .where('id', req.params.adventure_id)
+            .increment('adv_downvotes', 1)
+            .returning('id')
+            .then(updatedId => {
+                res.send(updatedId)
+            })
     },
 
     deleteAdventure: (req, res) => {
