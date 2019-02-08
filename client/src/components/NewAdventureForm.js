@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
     Container,
     Row,
@@ -11,6 +12,7 @@ import {
     FormFeedback,
     FormText,
 } from "reactstrap";
+import { addAdventure } from '../redux/actions/adventures'
 
 class NewAdventureForm extends Component {
     state = {
@@ -25,11 +27,13 @@ class NewAdventureForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const newPost = {
-            ...this.state,
+        const newAdventure = {
+            user_id: this.state.user_id,
+            title: this.state.title,
+            adv_img_url: this.state.img_url,
+            tags: this.state.tags.split(', ')
         };
-        // this.props.addNewPost(newPost);
-        // this.props.toggleForm();
+        this.props.addAdventure(newAdventure);
     };
 
     handleChange = e => {
@@ -70,23 +74,23 @@ class NewAdventureForm extends Component {
 
         switch (fieldName) {
             case "title":
-                titleValid = value.trim().length;
+                titleValid = value.trim();
                 fieldValidationErrors.title = titleValid ? "" : "Please enter a title";
                 break;
             case "description":
-                descriptionValid = value.trim().length;
+                descriptionValid = value.trim();
                 fieldValidationErrors.description = descriptionValid
                     ? ""
                     : "Please enter a description.";
                 break;
             case "img_url":
-                img_urlValid = value.trim().length;
+                img_urlValid = value.trim();
                 fieldValidationErrors.img_url = img_urlValid
                     ? ""
                     : "Please enter an image URL";
                 break;
             case "tags":
-                tagsValid = value.trim().length && value.includes(",");
+                tagsValid = value.trim() && value.includes(",");
                 fieldValidationErrors.tags = tagsValid ?
                     "" :
                     "Please enter tags seperated by commas (i.e. TagName, Horror, Mystery) ";
@@ -104,8 +108,11 @@ class NewAdventureForm extends Component {
     };
 
     render() {
+
+        const { fetchError } = this.props
         return (
             <Container>
+                {fetchError ? <div>There's been an error! </div> : null}
 
                 <Row>
                     <Col sm="10">
@@ -216,4 +223,13 @@ class NewAdventureForm extends Component {
     }
 }
 
-export default NewAdventureForm
+const mapStateToProps = state => {
+    return {
+        fetchError: state.adventures.fetchError
+    }
+}
+
+export default connect(
+    null,
+    { addAdventure }
+)(NewAdventureForm);

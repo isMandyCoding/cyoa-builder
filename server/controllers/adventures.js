@@ -114,6 +114,7 @@ module.exports = {
 
     },
     addNewAdventure: (req, res) => {
+        console.log(req.body)
         let inserIntoAdventures = knex('adventures')
             .insert({
                 title: req.body.title,

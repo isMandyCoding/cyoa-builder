@@ -41,4 +41,31 @@ export const getAdventure = id => {
     }
 }
 
-export const ADD_ADVENTURE = 'ADD_ADVENTURE'
+
+export const ADD_ADVENTURE = 'ADD_ADVENTURE';
+export const ADVENTURE_ERROR = 'ADVENTURE_ERROR'
+export const addAdventure = newAdventure => {
+    console.log(newAdventure)
+    return async dispatch => {
+        fetch('http://127.0.0.1:8000/adventures/new', {
+            method: 'POST',
+            body: JSON.stringify(newAdventure),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(response => response.json())
+            .then(response => {
+                dispatch({
+                    type: ADD_ADVENTURE,
+                    payload: response
+                })
+            })
+            .catch(err => {
+                dispatch({
+                    type: ADVENTURE_ERROR,
+                    payload: err
+                })
+            })
+    }
+}
