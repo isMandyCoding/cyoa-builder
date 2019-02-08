@@ -215,7 +215,7 @@ class NewAdventureForm extends Component {
                             </FormGroup>
                             <Button disabled={!this.state.formValid} type="submit">
                                 Submit
-                </Button>
+                            </Button>
                         </Form>
                     </Col>
                 </Row>
@@ -231,6 +231,6 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     { addAdventure }
 )(NewAdventureForm);

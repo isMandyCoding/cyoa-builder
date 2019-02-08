@@ -10,6 +10,8 @@ exports.up = function (knex, Promise) {
             .index();
         table.integer('route_votes')
             .defaultsTo(0)
+        table.integer('route_downvotes')
+            .defaultsTo(0)
         table.timestamps(true, true);
     })
 };

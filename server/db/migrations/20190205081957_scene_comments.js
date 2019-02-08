@@ -22,6 +22,8 @@ exports.up = function (knex, Promise) {
         table.text('content')
         table.integer('votes')
             .defaultsTo(0)
+        table.integer('downvotes')
+            .defaultsTo(0)
         table.timestamps(true, true);
     })
 };
