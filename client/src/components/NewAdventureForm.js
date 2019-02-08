@@ -31,7 +31,8 @@ class NewAdventureForm extends Component {
             user_id: this.state.user_id,
             title: this.state.title,
             adv_img_url: this.state.img_url,
-            tags: this.state.tags.split(', ')
+            tags: this.state.tags.split(', '),
+            description: this.state.description
         };
         this.props.addAdventure(newAdventure);
     };
