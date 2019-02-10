@@ -12,6 +12,8 @@ exports.up = function (knex, Promise) {
             .defaultsTo(0)
         table.integer('route_downvotes')
             .defaultsTo(0)
+        table.boolean("isInitialRoute")
+            .defaultsTo(false)
         table.timestamps(true, true);
     })
 };

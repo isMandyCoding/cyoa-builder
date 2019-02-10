@@ -7,67 +7,87 @@ exports.seed = function (knex, Promise) {
       return knex('adventure_routes').insert([
         {
           "route_title": "The Plot Thickens",
-          "adventure_id": 1
+          "adventure_id": 1,
+          "isInitialRoute": true,
         },
         {
           "route_title": "You're Going to Die",
-          "adventure_id": 2
+          "adventure_id": 2,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Who's This?",
-          "adventure_id": 3
+          "adventure_id": 3,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Turning Point",
-          "adventure_id": 4
+          "adventure_id": 4,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Wrong Decision",
-          "adventure_id": 5
+          "adventure_id": 5,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Really Bad Idea",
           "adventure_id": 6
+          ,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Now We're Getting Somewhere",
           "adventure_id": 7
+          ,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Some Route Title",
           "adventure_id": 8
+          ,
+          "isInitialRoute": true,
         },
         {
           "route_title": "This is Some Stuff Here",
           "adventure_id": 9
+          ,
+          "isInitialRoute": true,
         },
         {
           "route_title": "You're About to Catch the Murderer",
-          "adventure_id": 10
+          "adventure_id": 10,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Another Route Title",
-          "adventure_id": 11
+          "adventure_id": 11,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Route Title",
-          "adventure_id": 12
+          "adventure_id": 12,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Example Route Title",
-          "adventure_id": 13
+          "adventure_id": 13,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Route Title Here",
-          "adventure_id": 14
+          "adventure_id": 14,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Check Out This Route Title",
-          "adventure_id": 15
+          "adventure_id": 15,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Finally a Route Title",
-          "adventure_id": 16
+          "adventure_id": 16,
+          "isInitialRoute": true,
         },
         {
           "route_title": "Title for Route",

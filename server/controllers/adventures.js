@@ -65,7 +65,8 @@ module.exports = {
                 'adventures.adv_img_url',
                 'adventure_routes.id as route_id',
                 'adventure_routes.route_title',
-                'adventure_routes.route_votes'
+                'adventure_routes.route_votes',
+                'adventure_routes.isInitialRoute'
 
             )
             .where('adventures.id', req.params.adventure_id)
@@ -90,11 +91,11 @@ module.exports = {
                         routes: acc.routes ?
                             acc.routes.concat({
                                 route_id: currAdv.route_id, route_title: currAdv.route_title,
-                                route_votes: currAdv.route_votes
+                                route_votes: currAdv.route_votes, isInitialRoute: currAdv.isInitialRoute
                             }) :
                             [{
                                 route_id: currAdv.route_id, route_title: currAdv.route_title,
-                                route_votes: currAdv.route_votes
+                                route_votes: currAdv.route_votes, isInitialRoute: currAdv.isInitialRoute
                             }]
                     }
                     return acc
@@ -134,7 +135,8 @@ module.exports = {
                         uniqueRoutes.push({
                             route_id: item.route_id,
                             route_title: item.route_title,
-                            route_votes: item.route_votes
+                            route_votes: item.route_votes,
+                            isInitialRoute: item.isInitialRoute
                         })
                     }
                 }
