@@ -10,8 +10,9 @@ class AdventuresList extends Component {
         const { adventures, fetchingAdventures } = this.props
         const sortedAdventures = adventures ? adventures.sort((a, b) => b.adv_votes - a.adv_votes) :
             null
-        if (fetchingAdventures) return <div>Loading...</div>
-        if (sortedAdventures) {
+        if (fetchingAdventures) {
+            return <div>Loading...</div>
+        } else if (sortedAdventures) {
             return (
                 <div>
                     <h1>Come dive into an adventure!</h1>
@@ -20,6 +21,8 @@ class AdventuresList extends Component {
                     </Row>
                 </div>
             )
+        } else {
+            return null
         }
     }
 }

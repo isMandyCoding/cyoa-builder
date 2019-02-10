@@ -14,43 +14,6 @@ module.exports = {
             })
             .catch(err => res.json(err))
     },
-
-    getAllRoutes: (req, res) => {
-        knex('adventures')
-            .select(
-                'adventures.id as adventure_id',
-                'adventures.title',
-                'adventures.description',
-                'adventures.adv_img_url',
-                'adventure_routes.id as route_id',
-                'adventure_routes.route_title',
-                'adventure_routes.route_votes'
-            )
-            .where('adventures.id', req.params.adventure_id)
-            .join('adventure_routes', 'adventure_routes.adventure_id', 'adventures.id')
-            .then(results => {
-                let structuredRoutes = results.reduce((acc, currRoute) => {
-                    acc = {
-                        ...acc,
-                        routes: acc.routes ?
-                            acc.routes.concat({
-                                route_id: currRoute.route_id, route_title: currRoute.route_title,
-                                route_votes: currRoute.route_votes
-                            }) :
-                            [{
-                                route_id: currRoute.route_id, route_title: currRoute.route_title,
-                                route_votes: currRoute.route_votes
-                            }]
-                    }
-                    return acc
-                }, { ...results[0] })
-                res.send(structuredRoutes)
-            })
-            .catch(err => {
-                res.send(err)
-            })
-    },
-
     getRoute: (req, res) => {
         knex('adventure_routes')
             .select(

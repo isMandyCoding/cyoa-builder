@@ -14,15 +14,13 @@ module.exports = function (app) {
     app.get('/index', adventures.getAllAdventures)
 
     //LOGGED IN USERS ONLY
-    //ROUTE TO GET JUST ONE ADVENTURE
+    //ROUTE TO GET JUST ONE ADVENTURE AND ASSOCIATED TAGS, EDITORS, AND ROUTES
     app.get('/adventures/:adventure_id', adventures.getOneAdventure)
     //ROUTE TO ADD NEW ADVENTURE
     app.post('/adventures/new', adventures.addNewAdventure)
     //ROUTE  TO DELETE AN ADVENTURE
     app.delete('/adventures/delete/:adventure_id', adventures.deleteAdventure)
 
-    //ROUTE TO GET ALL ROUTES ASSOCIATED WITH AN ADVENTURE
-    app.get('/adventures/routes/:adventure_id', adventure_routes.getAllRoutes)
     //ROUTE TO GET SINGLE ROUTE AND ALL ASSOCIATED SCENES
     app.get('/adventures/routes/one/:route_id', adventure_routes.getRoute)
     //route to add upvote to adventure

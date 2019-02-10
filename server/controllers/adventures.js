@@ -61,16 +61,24 @@ module.exports = {
                 'tags.tag_name',
                 'adventure_editors.id as editor_id',
                 'users.username',
-                'adventure_editors.user_id'
+                'adventure_editors.user_id',
+                'adventures.adv_img_url',
+                'adventure_routes.id as route_id',
+                'adventure_routes.route_title',
+                'adventure_routes.route_votes'
+
             )
             .where('adventures.id', req.params.adventure_id)
             .join('adventure_tags', 'adventure_tags.adventure_id', 'adventures.id')
             .join('tags', 'tags.id', 'adventure_tags.tag_id')
             .join('adventure_editors', 'adventure_editors.adventure_id', 'adventures.id')
             .join('users', 'users.id', 'adventure_editors.user_id')
+            .join('adventure_routes', 'adventure_routes.adventure_id', 'adventures.id')
             .then(adventure => {
+                console.log(adventure)
 
                 let structuredAdv = adventure.reduce((acc, currAdv) => {
+                    console.log(currAdv)
                     acc = {
                         ...acc,
                         tags: acc.tags ?
@@ -78,7 +86,16 @@ module.exports = {
                             [{ tag_name: currAdv.tag_name, tag_id: currAdv.tag_id }],
                         editors: acc.editors ?
                             acc.editors.concat({ username: currAdv.username, user_id: currAdv.user_id }) :
-                            [{ username: currAdv.username, user_id: currAdv.user_id }]
+                            [{ username: currAdv.username, user_id: currAdv.user_id }],
+                        routes: acc.routes ?
+                            acc.routes.concat({
+                                route_id: currAdv.route_id, route_title: currAdv.route_title,
+                                route_votes: currAdv.route_votes
+                            }) :
+                            [{
+                                route_id: currAdv.route_id, route_title: currAdv.route_title,
+                                route_votes: currAdv.route_votes
+                            }]
                     }
                     return acc
                 }, { ...adventure[0] })
@@ -109,9 +126,24 @@ module.exports = {
                 }
                 structuredAdv.editors = uniqueEditors
 
+                const uniqueRoutes = [];
+                const routeMap = new Map();
+                for (const item of structuredAdv.routes) {
+                    if (!routeMap.has(item.route_id)) {
+                        routeMap.set(item.route_id, true);
+                        uniqueRoutes.push({
+                            route_id: item.route_id,
+                            route_title: item.route_title,
+                            route_votes: item.route_votes
+                        })
+                    }
+                }
+                structuredAdv.routes = uniqueRoutes
+
+
                 res.send(structuredAdv)
             })
-            .catch(err => res.send("What?"))
+            .catch(err => res.json(err))
 
     },
     addNewAdventure: (req, res) => {

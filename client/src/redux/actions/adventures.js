@@ -16,6 +16,7 @@ export const getAdventures = () => {
 
 export const GET_ADVENTURE = 'GET_ADVENTURE'
 export const getAdventure = id => {
+    console.log("this is the get adventure action: ", id)
     return async dispatch => {
         fetch(`http://127.0.0.1:8000/adventures/${id}`)
             .then(response => response.json())
@@ -24,6 +25,9 @@ export const getAdventure = id => {
                     type: GET_ADVENTURE,
                     payload: adventure
                 })
+            })
+            .catch(err => {
+                console.log(err)
             })
     }
 }

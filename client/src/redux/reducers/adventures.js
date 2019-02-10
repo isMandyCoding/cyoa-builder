@@ -19,7 +19,7 @@ export const adventures = (state = initialState, action) => {
         case GET_ADVENTURE:
             return {
                 ...state,
-                fetchingAdvent: false,
+                fetchingAdventures: false,
                 singleAdvent: action.payload
             }
         case ADD_ADVENTURE:

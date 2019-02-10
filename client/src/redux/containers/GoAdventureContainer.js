@@ -4,12 +4,11 @@ import { getAdventure } from '../actions/adventures'
 
 const mapStateToProps = state => {
     return {
-        fetchingAdvent: state.fetchingAdvent,
-        singleAdvent: state.singleAdvent
+        adventure: state.adventures.singleAdvent,
+        fetchingAdventures: state.adventures.fetchingAdventures
     }
 }
 
-//need to write action getAdventure
 const mapDispatchToProps = dispatch => {
     return {
         getAdventure: id => {
