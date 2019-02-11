@@ -25,15 +25,10 @@ class Adventure extends Component {
         this.props.upVoteAdventure(this.props.adventure.adventure_id)
     }
 
-    toggle = () => {
-        this.setState(prevState => ({
-            modal: !prevState.modal
-        }));
-    }
+
 
     render() {
         const { adventure, onAdventure } = this.props
-        console.log(adventure)
         return (
             <div>
                 <div>

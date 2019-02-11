@@ -34,26 +34,39 @@ export const adventures = (state = initialState, action) => {
         case UPVOTE_ADV:
             return {
                 ...state,
-                adventures: state.adventures.map(adventure => {
+                adventures: state.adventures ? state.adventures.map(adventure => {
                     return {
                         ...adventure,
                         adv_votes: adventure.adventure_id == action.payload ?
                             adventure.adv_votes + 1 :
                             adventure.adv_votes
                     }
-                })
+                }) :
+                    state.adventures,
+                singleAdvent: state.singleAdvent ? {
+                    ...state.singleAdvent,
+                    adv_votes: state.singleAdvent.adv_votes + 1
+                } :
+                    state.singleAdvent
             }
         case DOWNVOTE_ADV:
             return {
                 ...state,
-                adventures: state.adventures.map(adventure => {
+                adventures: state.adventures ? state.adventures.map(adventure => {
                     return {
                         ...adventure,
                         adv_downvotes: adventure.adventure_id == action.payload ?
                             adventure.adv_downvotes + 1 :
                             adventure.adv_downvotes
                     }
-                })
+                }) :
+                    state.adventures,
+                singleAdvent: {
+                    ...state.singleAdvent,
+                    adv_downvotes: state.singleAdvent ?
+                        state.singleAdvent.adv_downvotes + 1 :
+                        state.singleAdvent.adv_downvotes
+                }
             }
         default:
             return state

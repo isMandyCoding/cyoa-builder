@@ -57,6 +57,8 @@ module.exports = {
             .select('adventures.id as adventure_id',
                 'adventures.title',
                 'adventures.description',
+                'adventures.adv_votes',
+                'adventures.adv_downvotes',
                 'adventure_tags.tag_id as tag_id',
                 'tags.tag_name',
                 'adventure_editors.id as editor_id',
@@ -76,10 +78,8 @@ module.exports = {
             .join('users', 'users.id', 'adventure_editors.user_id')
             .join('adventure_routes', 'adventure_routes.adventure_id', 'adventures.id')
             .then(adventure => {
-                console.log(adventure)
 
                 let structuredAdv = adventure.reduce((acc, currAdv) => {
-                    console.log(currAdv)
                     acc = {
                         ...acc,
                         tags: acc.tags ?
