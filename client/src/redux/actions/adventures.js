@@ -94,3 +94,13 @@ export const downVoteAdventure = id => {
             .catch(err => console.log(err))
     }
 }
+
+export const FILTER_ADVENTURES = 'FILTER_ADVENTURES'
+export const filterAdventures = filterObj => {
+    return dispatch => {
+        dispatch({
+            type: FILTER_ADVENTURES,
+            payload: filterObj
+        })
+    }
+}

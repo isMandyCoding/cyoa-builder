@@ -8,12 +8,15 @@ import AdventuresListContainer from './redux/containers/AdventuresListContainer'
 import GoAdventureContainer from './redux/containers/GoAdventureContainer';
 import Navigation from './components/Navigation';
 import NewAdventureForm from './components/NewAdventureForm';
+import SearchbarContainer from './redux/containers/SearchbarContainer';
+import SearchBar from './components/SearchBar'
 
 ReactDOM.render(
     <Provider store={store}>
         <Router>
             <div>
                 <Navigation />
+                <SearchbarContainer />
                 <Route exact path="/" component={AdventuresListContainer} />
                 <Route exact path="/adventures/:adventure_id" component={GoAdventureContainer} />
                 <Route exact path="/new/adventure" component={NewAdventureForm} />

@@ -8,7 +8,10 @@ class AdventuresList extends Component {
     }
     render() {
         const { adventures, fetchingAdventures } = this.props
-        const sortedAdventures = adventures ? adventures.sort((a, b) => b.adv_votes - a.adv_votes) :
+        const sortedAdventures = adventures ?
+            adventures.sort((a, b) => b.adv_votes - a.adv_votes)
+                .filter(adventure => adventure[this.props.type].map(tag => tag.tag_name).join().toLowerCase().includes(this.props.filterPhrase.toLowerCase()))
+            :
             null
         if (fetchingAdventures) {
             return <div>Loading...</div>

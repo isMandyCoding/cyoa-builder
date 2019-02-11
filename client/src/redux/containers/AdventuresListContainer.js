@@ -5,7 +5,9 @@ import { getAdventures } from '../actions/adventures'
 const mapStateToProps = state => {
     return {
         adventures: state.adventures.adventures,
-        fetchingAdventures: state.adventures.fetchingAdventures
+        fetchingAdventures: state.adventures.fetchingAdventures,
+        type: state.adventures.type,
+        filterPhrase: state.adventures.filterPhrase
     }
 }
 
