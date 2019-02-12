@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Adventure from './Adventure'
 import { Row } from 'reactstrap'
+import SearchBarContainer from '../redux/containers/SearchbarContainer'
 
 class AdventuresList extends Component {
     componentDidMount() {
@@ -18,6 +19,7 @@ class AdventuresList extends Component {
         } else if (sortedAdventures) {
             return (
                 <div>
+                    <SearchBarContainer />
                     <h1>Come dive into an adventure!</h1>
                     <Row>
                         {sortedAdventures.map(adventure => <Adventure key={adventure.adventure_id} adventure={adventure} />)}

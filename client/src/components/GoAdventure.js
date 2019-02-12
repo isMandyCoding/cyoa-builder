@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Adventure from '../components/Adventure'
-import { upVoteAdventure, downVoteAdventure } from '../redux/actions/adventures'
 
 class GoAdventure extends Component {
     componentDidMount() {
         this.props.getAdventure(Number(this.props.match.params.adventure_id))
+
     }
 
     render() {

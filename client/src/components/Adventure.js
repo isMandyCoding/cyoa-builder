@@ -2,13 +2,25 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import AdventuringContainer from '../redux/containers/AdventuringContainer'
 import {
-    Card, CardImg, CardText, CardBody, CardLink,
-    CardTitle, CardSubtitle,
-    Col, Button,
-    Modal, ModalHeader, ModalBody, ModalFooter
+    Card,
+    CardImg,
+    CardText,
+    CardBody,
+    CardLink,
+    CardTitle,
+    CardSubtitle,
+    Col,
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter
 } from 'reactstrap';
-import { Route, Link } from 'react-router-dom'
-import { upVoteAdventure, downVoteAdventure } from '../redux/actions/adventures'
+import {
+    Route,
+    Link
+} from 'react-router-dom'
+import { upVoteAdventure, downVoteAdventure, getScenes } from '../redux/actions/adventures'
 
 class Adventure extends Component {
 
@@ -17,7 +29,6 @@ class Adventure extends Component {
     };
 
     handleDown = () => {
-        console.log("handled down")
         this.props.downVoteAdventure(this.props.adventure.adventure_id)
     }
 
@@ -25,10 +36,10 @@ class Adventure extends Component {
         this.props.upVoteAdventure(this.props.adventure.adventure_id)
     }
 
-
-
     render() {
         const { adventure, onAdventure } = this.props
+        // console.log("this is the initial route id: ", Number(adventure.routes.find(route => route.isInitialRoute).route_id))
+        // this.props.getScenes(Number(adventure.routes.find(route => route.isInitialRoute).route_id))
         return (
             <div>
                 <div>
@@ -41,11 +52,10 @@ class Adventure extends Component {
                             <CardImg width="100%" src={adventure.adv_img_url} alt={adventure.title} />
                             <CardBody>
                                 <CardText>{adventure.description}</CardText>
-                                <CardText><i onClick={this.handleUp} class="material-icons">thumb_up</i> {adventure.adv_votes} <i onClick={this.handleDown} class="material-icons">thumb_down</i> {adventure.adv_downvotes} </CardText>
+                                <CardText><i onClick={this.handleUp} style={{ 'cursor': 'pointer' }} class="material-icons">thumb_up</i> {adventure.adv_votes} <i onClick={this.handleDown} style={{ 'cursor': 'pointer' }} class="material-icons">thumb_down</i> {adventure.adv_downvotes} </CardText>
                                 <CardLink> <Link to={`/adventures/${adventure.adventure_id}`} >Go On Adventure!</Link> </CardLink>
                                 <Button color="danger" onClick={this.toggle}>Start</Button>
-
-                                <AdventuringContainer />
+                                {/* <AdventuringContainer /> */}
                             </CardBody>
                         </Card>
                     </Col>
@@ -57,4 +67,4 @@ class Adventure extends Component {
 
 
 
-export default connect(null, { upVoteAdventure, downVoteAdventure })(Adventure) 
+export default connect(null, { upVoteAdventure, downVoteAdventure, getScenes })(Adventure) 

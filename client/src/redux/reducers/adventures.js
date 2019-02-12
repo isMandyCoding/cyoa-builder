@@ -1,6 +1,16 @@
-import { GET_ADVENTURES, GET_ADVENTURE, ADD_ADVENTURE, ADVENTURE_ERROR, UPVOTE_ADV, DOWNVOTE_ADV, FILTER_ADVENTURES } from '../actions/adventures'
+import {
+    GET_ADVENTURES,
+    GET_ADVENTURE,
+    ADD_ADVENTURE,
+    ADVENTURE_ERROR,
+    UPVOTE_ADV,
+    DOWNVOTE_ADV,
+    FILTER_ADVENTURES,
+    GET_SCENES
+} from '../actions/adventures'
 
 const initialState = {
+    routeScenes: [],
     fetchingAdventures: true,
     adventures: null,
     singleAdvent: null,
@@ -22,7 +32,8 @@ export const adventures = (state = initialState, action) => {
             return {
                 ...state,
                 fetchingAdventures: false,
-                singleAdvent: action.payload
+                singleAdvent: action.payload,
+                routeScenes: action.routeScenes
             }
         case ADD_ADVENTURE:
             return {
@@ -63,18 +74,22 @@ export const adventures = (state = initialState, action) => {
                     }
                 }) :
                     state.adventures,
-                singleAdvent: {
+                singleAdvent: state.singleAdvent ? {
                     ...state.singleAdvent,
-                    adv_downvotes: state.singleAdvent ?
-                        state.singleAdvent.adv_downvotes + 1 :
-                        state.singleAdvent.adv_downvotes
-                }
+                    adv_downvotes: state.singleAdvent.adv_downvotes + 1
+                } :
+                    state.singleAdvent
             }
         case FILTER_ADVENTURES:
             return {
                 ...state,
                 type: action.payload.type,
                 filterPhrase: action.payload.filterPhrase
+            }
+        case GET_SCENES:
+            return {
+                ...state,
+                routeScenes: action.payload
             }
         default:
             return state
