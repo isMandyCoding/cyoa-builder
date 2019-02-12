@@ -21,7 +21,7 @@ module.exports = function (app) {
     //ROUTE  TO DELETE AN ADVENTURE
     app.delete('/adventures/delete/:adventure_id', adventures.deleteAdventure)
 
-    //ROUTE TO GET SINGLE ROUTE AND ALL ASSOCIATED SCENES
+    //ROUTE TO GET SINGLE ROUTE AND ALL ASSOCIATED DIALOGUE
     app.get('/adventures/routes/one/:route_id', adventure_routes.getRoute)
     //route to add upvote to adventure
     app.patch('/adventures/upvote/:adventure_id', adventures.upVoteAdventure)

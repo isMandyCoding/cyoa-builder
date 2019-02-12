@@ -1,11 +1,24 @@
 import React, { Component } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardImg } from 'reactstrap'
 
 class Adventuring extends Component {
 
     state = {
-        modal: false
+        modal: false,
+        currentDialogue: 0
     };
+
+    handleNext = () => {
+        this.setState(prevState => ({
+            currentDialogue: prevState.currentDialogue + 1 < this.props.routeDialogue.dialogue.length ? prevState.currentDialogue + 1 : prevState.currentDialogue
+        }))
+    }
+
+    handleBack = () => {
+        this.setState(prevState => ({
+            currentDialogue: prevState.currentDialogue > 0 ? prevState.currentDialogue - 1 : prevState.currentDialogue
+        }))
+    }
 
     toggle = () => {
         this.setState(prevState => ({
@@ -14,14 +27,13 @@ class Adventuring extends Component {
     }
 
     componentDidMount() {
-        //need to edit backend route to give associated dialogue for a route, rather than scenes
-        // this.getDialogue(this.props.initialRoute.id)
+        this.props.getDialogue(this.props.initialRoute.route_id)
     }
 
-
-
     render() {
-        const { initialRoute } = this.props
+        const { initialRoute, routeDialogue } = this.props
+        const sortedDialogue = routeDialogue ? routeDialogue.dialogue.sort((a, b) => a.sequence_number - b.sequence_number) : null
+        console.log(sortedDialogue)
         return (
             <div>
                 <Button color="danger" onClick={this.toggle}>Start</Button>
@@ -29,11 +41,17 @@ class Adventuring extends Component {
                     toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}> {initialRoute.route_title} </ModalHeader>
                     <ModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <CardImg src={routeDialogue ? routeDialogue.route_img_url : null} />
+                        {sortedDialogue ? sortedDialogue[this.state.currentDialogue].content : null}
+                        {
+                            (sortedDialogue && sortedDialogue[this.state.currentDialogue].isDecisionPoint) ?
+                                <Decision /> :
+                                null
+                        }
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary">Back</Button>{' '}
-                        <Button color="primary" >Next</Button>{' '}
+                        <Button color="primary" onClick={this.handleBack}>Back</Button>{' '}
+                        <Button color="primary" onClick={this.handleNext} >Next</Button>{' '}
                         <Button color="secondary" onClick={this.toggle}>Close</Button>
                     </ModalFooter>
                 </Modal>

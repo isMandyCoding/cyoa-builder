@@ -3,8 +3,8 @@ const knex = require("../db/knex.js");
 module.exports = {
     getDecisions: (req, res) => {
         knex('scene_dialogue')
-            .where('scene_dialogue.id', req.params.dialogue_id)
-            .join('dialogue_decisions', 'dialogue_decisions.dialogue_id', 'scene_dialogue.id')
+            .where('route_dialogue.id', req.params.dialogue_id)
+            .join('dialogue_decisions', 'dialogue_decisions.dialogue_id', 'route_dialogue.id')
             .then(results => {
                 const structuredDialogue = results.reduce((acc, currDiologue) => {
                     console.log(acc)

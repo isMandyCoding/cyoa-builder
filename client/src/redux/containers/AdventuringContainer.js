@@ -5,7 +5,8 @@ import { getAdventure, getDialogue } from '../actions/adventures'
 const mapStateToProps = state => {
     return {
         adventure: state.adventures.singleAdvent,
-        fetchingAdventures: state.adventures.fetchingAdventures
+        fetchingAdventures: state.adventures.fetchingAdventures,
+        routeDialogue: state.adventures.routeDialogue
     }
 }
 
