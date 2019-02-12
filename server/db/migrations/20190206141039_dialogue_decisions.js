@@ -11,7 +11,7 @@ exports.up = function (knex, Promise) {
         table.integer('dialogue_id')
             .notNullable()
             .references('id')
-            .inTable('scene_dialogue')
+            .inTable('route_dialogue')
             .onDelete('CASCADE')
             .index();
         table.timestamps(true, true);

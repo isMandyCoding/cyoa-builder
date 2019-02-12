@@ -14,6 +14,7 @@ exports.up = function (knex, Promise) {
             .defaultsTo(0)
         table.boolean("isInitialRoute")
             .defaultsTo(false)
+        table.text('route_img_url')
         table.timestamps(true, true);
     })
 };

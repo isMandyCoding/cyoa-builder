@@ -1,10 +1,10 @@
 exports.up = function (knex, Promise) {
-    return knex.schema.createTable('scene_comments', table => {
+    return knex.schema.createTable('route_comments', table => {
         table.increments();
-        table.integer('scene_id')
+        table.integer('route_id')
             .notNullable()
             .references('id')
-            .inTable('route_scenes')
+            .inTable('adventure_routes')
             .onDelete('CASCADE')
             .index();
         table.integer('adventure_id')
@@ -29,5 +29,5 @@ exports.up = function (knex, Promise) {
 };
 
 exports.down = function (knex, Promise) {
-    return knex.schema.dropTable('scene_comments')
+    return knex.schema.dropTable('route_comments')
 };
