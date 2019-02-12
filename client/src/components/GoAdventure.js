@@ -4,6 +4,8 @@ import Adventure from '../components/Adventure'
 class GoAdventure extends Component {
     componentDidMount() {
         this.props.getAdventure(Number(this.props.match.params.adventure_id))
+        this.props.resetDialogue()
+        this.props.resetCurrentRoute()
 
     }
 

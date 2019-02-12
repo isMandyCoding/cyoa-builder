@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardImg } from 'reactstrap'
-import DecisionContainer from '../redux/containers/DecisionContainer'
+import DecisionsContainer from '../redux/containers/DecisionsContainer'
 
 class Adventuring extends Component {
 
     state = {
         modal: false,
-        currentDialogue: 0
     };
 
     handleNext = () => {
-        this.setState(prevState => ({
-            currentDialogue: prevState.currentDialogue + 1 < this.props.routeDialogue.dialogue.length ? prevState.currentDialogue + 1 : prevState.currentDialogue
-        }))
+        if (this.props.currentDialogue < this.props.routeDialogue.dialogue.length - 1) {
+            this.props.handleNext()
+        }
     }
 
     handleBack = () => {
-        this.setState(prevState => ({
-            currentDialogue: prevState.currentDialogue > 0 ? prevState.currentDialogue - 1 : prevState.currentDialogue
-        }))
+        if (this.props.currentDialogue > 0) {
+            this.props.handleBack()
+        }
     }
 
     toggle = () => {
@@ -28,25 +27,31 @@ class Adventuring extends Component {
     }
 
     componentDidMount() {
-        this.props.getDialogue(this.props.initialRoute.route_id)
+        if (!this.props.currentRoute) {
+            //first route ever
+            this.props.getDialogue(this.props.initialRoute.route_id)
+        } else {
+            //should be set after decision is made
+            this.props.getDialogue(this.props.currentRoute.route_id)
+        }
+
     }
 
     render() {
-        const { initialRoute, routeDialogue } = this.props
+        const { initialRoute, routeDialogue, currentRoute } = this.props
         const sortedDialogue = routeDialogue ? routeDialogue.dialogue.sort((a, b) => a.sequence_number - b.sequence_number) : null
-        console.log(sortedDialogue)
         return (
             <div>
                 <Button color="danger" onClick={this.toggle}>Start</Button>
                 <Modal isOpen={this.state.modal} modalTransition={{ timeout: 700 }} backdropTransition={{ timeout: 1300 }}
                     toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}> {initialRoute.route_title} </ModalHeader>
+                    <ModalHeader toggle={this.toggle}> {currentRoute ? currentRoute.route_title : initialRoute.route_title} </ModalHeader>
                     <ModalBody>
                         <CardImg src={routeDialogue ? routeDialogue.route_img_url : null} />
-                        {sortedDialogue ? sortedDialogue[this.state.currentDialogue].content : null}
+                        {sortedDialogue ? sortedDialogue[this.props.currentDialogue].content : null}
                         {
-                            (sortedDialogue && sortedDialogue[this.state.currentDialogue].isDecisionPoint) ?
-                                <DecisionContainer dialogue={sortedDialogue[this.state.currentDialogue]} /> :
+                            (sortedDialogue && sortedDialogue[this.props.currentDialogue].isDecisionPoint) ?
+                                <DecisionsContainer dialogue={sortedDialogue[this.props.currentDialogue]} /> :
                                 null
                         }
                     </ModalBody>

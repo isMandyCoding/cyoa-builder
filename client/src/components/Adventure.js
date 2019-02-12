@@ -20,7 +20,7 @@ import {
     Route,
     Link
 } from 'react-router-dom'
-import { upVoteAdventure, downVoteAdventure, getScenes } from '../redux/actions/adventures'
+import { upVoteAdventure, downVoteAdventure } from '../redux/actions/adventures'
 
 class Adventure extends Component {
 
@@ -38,8 +38,6 @@ class Adventure extends Component {
 
     render() {
         const { adventure, onAdventure } = this.props
-        // console.log("this is the initial route id: ", Number(adventure.routes.find(route => route.isInitialRoute).route_id))
-        // this.props.getScenes(Number(adventure.routes.find(route => route.isInitialRoute).route_id))
         return (
             <div>
                 <div>
@@ -71,4 +69,4 @@ class Adventure extends Component {
 
 
 
-export default connect(null, { upVoteAdventure, downVoteAdventure, getScenes })(Adventure) 
+export default connect(null, { upVoteAdventure, downVoteAdventure })(Adventure) 

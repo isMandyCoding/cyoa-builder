@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
-import Decision from '../../components/Decision'
+import Decisions from '../../components/Decisions'
 import { getDecisions } from '../actions/adventures'
+import { makeDecision } from '../actions/decisions'
 
 const mapStateToProps = state => {
     return {
@@ -16,7 +17,12 @@ const mapDispatchToProps = dispatch => {
                 getDecisions(dialogueId)
             )
         },
+        makeDecision: routeId => {
+            dispatch(
+                makeDecision(routeId)
+            )
+        }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Decision)
+export default connect(mapStateToProps, mapDispatchToProps)(Decisions)

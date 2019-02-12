@@ -20,17 +20,10 @@ export const getAdventure = id => {
         fetch(`http://127.0.0.1:8000/adventures/${id}`)
             .then(response => response.json())
             .then(adventure => {
-                let routeId = Number(adventure.routes.find(route => route.isInitialRoute).route_id)
-                fetch(`http://127.0.0.1:8000/adventures/routes/one/${routeId}`)
-                    .then(routeScenes => routeScenes.json())
-                    .then(jsonrouteScenes => {
-                        // fetch()
-                        dispatch({
-                            type: GET_ADVENTURE,
-                            payload: adventure,
-                            routeScenes: jsonrouteScenes
-                        })
-                    })
+                dispatch({
+                    type: GET_ADVENTURE,
+                    payload: adventure,
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -110,22 +103,6 @@ export const filterAdventures = filterObj => {
     }
 }
 
-
-export const GET_SCENES = 'GET_SCENES';
-export const getScenes = routeId => {
-    console.log("we made it to the getScens action and this is the id: ", routeId)
-    fetch(`http://127.0.0.1:8000/adventures/routes/one/${routeId}`)
-        .then(response => response.json())
-        .then(routeScenes => {
-            return dispatch => {
-                dispatch({
-                    type: GET_SCENES,
-                    payload: routeScenes
-                })
-            }
-        })
-        .catch(err => console.log(err))
-}
 
 export const GET_DIALOGUE = 'GET_DIALOGUE'
 export const getDialogue = routeId => dispatch => {

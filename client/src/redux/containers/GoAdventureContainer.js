@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import GoAdventure from '../../components/GoAdventure'
 import { getAdventure } from '../actions/adventures'
+import { resetDialogue, resetCurrentRoute } from '../actions/decisions'
 
 const mapStateToProps = state => {
     return {
@@ -17,6 +18,16 @@ const mapDispatchToProps = dispatch => {
                 getAdventure(id)
             )
         },
+        resetDialogue: () => {
+            dispatch(
+                resetDialogue()
+            )
+        },
+        resetCurrentRoute: () => {
+            dispatch(
+                resetCurrentRoute()
+            )
+        }
     }
 }
 

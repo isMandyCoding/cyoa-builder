@@ -20,7 +20,8 @@ const initialState = {
     type: "tags",
     filterPhrase: "",
     routeDialogue: null,
-    dialogueDecisions: null
+    dialogueDecisions: null,
+
 }
 
 export const adventures = (state = initialState, action) => {
@@ -36,7 +37,6 @@ export const adventures = (state = initialState, action) => {
                 ...state,
                 fetchingAdventures: false,
                 singleAdvent: action.payload,
-                routeScenes: action.routeScenes
             }
         case ADD_ADVENTURE:
             return {
