@@ -2,7 +2,7 @@ const knex = require("../db/knex.js");
 
 module.exports = {
     getDecisions: (req, res) => {
-        knex('scene_dialogue')
+        knex('route_dialogue')
             .where('route_dialogue.id', req.params.dialogue_id)
             .join('dialogue_decisions', 'dialogue_decisions.dialogue_id', 'route_dialogue.id')
             .then(results => {
@@ -21,7 +21,13 @@ module.exports = {
                             }]
                     }
                     return acc
-                }, { ...results[0] })
+                }, {
+                        route_id: results[0].route_id,
+                        sequence_number: results[0].sequence_number,
+                        content: results[0].content,
+                        isDecisionPoint: results[0].isDecisionPoint,
+                        dialogue_id: results[0].dialogue_id
+                    })
 
                 res.send(structuredDialogue)
             })
