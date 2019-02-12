@@ -6,7 +6,8 @@ import {
     UPVOTE_ADV,
     DOWNVOTE_ADV,
     FILTER_ADVENTURES,
-    GET_DIALOGUE
+    GET_DIALOGUE,
+    GET_DECISIONS
 } from '../actions/adventures'
 
 const initialState = {
@@ -18,7 +19,8 @@ const initialState = {
     fetchingAdvent: true,
     type: "tags",
     filterPhrase: "",
-    routeDialogue: null
+    routeDialogue: null,
+    dialogueDecisions: null
 }
 
 export const adventures = (state = initialState, action) => {
@@ -91,6 +93,11 @@ export const adventures = (state = initialState, action) => {
             return {
                 ...state,
                 routeDialogue: action.payload
+            }
+        case GET_DECISIONS:
+            return {
+                ...state,
+                dialogueDecisions: action.payload
             }
         default:
             return state

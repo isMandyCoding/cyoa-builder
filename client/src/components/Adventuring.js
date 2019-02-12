@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardImg } from 'reactstrap'
+import DecisionContainer from '../redux/containers/DecisionContainer'
 
 class Adventuring extends Component {
 
@@ -45,7 +46,7 @@ class Adventuring extends Component {
                         {sortedDialogue ? sortedDialogue[this.state.currentDialogue].content : null}
                         {
                             (sortedDialogue && sortedDialogue[this.state.currentDialogue].isDecisionPoint) ?
-                                <Decision /> :
+                                <DecisionContainer dialogue={sortedDialogue[this.state.currentDialogue]} /> :
                                 null
                         }
                     </ModalBody>

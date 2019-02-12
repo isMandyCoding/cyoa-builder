@@ -59,10 +59,6 @@ class Adventure extends Component {
                                     : null
                                 }
 
-                                {adventure.routes ?
-                                    <AdventuringContainer initialRoute={adventure.routes ? adventure.routes.find(route => route.isInitialRoute) : null} />
-                                    : null
-                                }
 
                             </CardBody>
                         </Card>

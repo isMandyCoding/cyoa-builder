@@ -134,7 +134,6 @@ export const getDialogue = routeId => dispatch => {
     fetch(`http://127.0.0.1:8000/adventures/routes/one/${routeId}`)
         .then(response => response.json())
         .then(routeDialogue => {
-            console.log(routeDialogue)
             dispatch({
                 type: GET_DIALOGUE,
                 payload: routeDialogue
@@ -146,5 +145,13 @@ export const getDialogue = routeId => dispatch => {
 
 export const GET_DECISIONS = 'GET_DECISIONS'
 export const getDecisions = dialogueId => dispatch => {
-    // fetch(``)
+    fetch(`http://127.0.0.1:8000/adventures/dialogue/${dialogueId}`)
+        .then(response => response.json())
+        .then(decisions => {
+            dispatch({
+                type: GET_DECISIONS,
+                payload: decisions
+            })
+        })
+        .catch(err => console.log(err))
 }

@@ -5,6 +5,7 @@ import { getDecisions } from '../actions/adventures'
 const mapStateToProps = state => {
     return {
         adventure: state.adventures.singleAdvent,
+        dialogueDecisions: state.adventures.dialogueDecisions
     }
 }
 

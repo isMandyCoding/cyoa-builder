@@ -36,7 +36,7 @@ module.exports = {
                         ...acc,
                         dialogue: acc.dialogue ?
                             acc.dialogue.concat({ dialogue_id: currDialogue.dialogue_id, sequence_number: currDialogue.sequence_number, content: currDialogue.content, isDecisionPoint: currDialogue.isDecisionPoint }) :
-                            [{ dialogue_id: currDialogue.scene_id, sequence_number: currDialogue.sequence_number, content: currDialogue.content, isDecisionPoint: currDialogue.isDecisionPoint }]
+                            [{ dialogue_id: currDialogue.dialogue_id, sequence_number: currDialogue.sequence_number, content: currDialogue.content, isDecisionPoint: currDialogue.isDecisionPoint }]
                     }
                     return acc
                 }, {
