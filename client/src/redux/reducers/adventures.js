@@ -17,7 +17,8 @@ const initialState = {
     fetchError: null,
     fetchingAdvent: true,
     type: "tags",
-    filterPhrase: ""
+    filterPhrase: "",
+    routeDialogue: null
 }
 
 export const adventures = (state = initialState, action) => {
@@ -89,7 +90,7 @@ export const adventures = (state = initialState, action) => {
         case GET_DIALOGUE:
             return {
                 ...state,
-                routeDialogue: action.routeDialogue
+                routeDialogue: action.payload
             }
         default:
             return state
