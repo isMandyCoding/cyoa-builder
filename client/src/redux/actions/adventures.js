@@ -142,3 +142,8 @@ export const getDialogue = routeId => dispatch => {
         .catch(err => console.log(err))
 
 }
+
+export const GET_DECISIONS = 'GET_DECISIONS'
+export const getDecisions = dialogueId => dispatch => {
+    // fetch(``)
+}
