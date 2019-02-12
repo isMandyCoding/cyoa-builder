@@ -126,7 +126,19 @@ export const getScenes = routeId => {
         .catch(err => console.log(err))
 }
 
+export const GET_DIALOGUE = 'GET_DIALOGUE'
 export const getDialogue = routeId => {
     //need to alter backend route to give all associated dialogue for a route
-    fetch(``)
+    fetch(`http://127.0.0.1:8000/adventures/routes/one/${routeId}`)
+        .then(response => response.json())
+        .then(routeDialogue => {
+            return dispatch => {
+                dispatch({
+                    type: GET_DIALOGUE,
+                    payload: routeDialogue
+                })
+            }
+        })
+        .catch(err => console.log(err))
+
 }

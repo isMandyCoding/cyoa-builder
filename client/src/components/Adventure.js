@@ -55,7 +55,11 @@ class Adventure extends Component {
                                 <CardText><i onClick={this.handleUp} style={{ 'cursor': 'pointer' }} class="material-icons">thumb_up</i> {adventure.adv_votes} <i onClick={this.handleDown} style={{ 'cursor': 'pointer' }} class="material-icons">thumb_down</i> {adventure.adv_downvotes} </CardText>
                                 <CardLink> <Link to={`/adventures/${adventure.adventure_id}`} >Go On Adventure!</Link> </CardLink>
 
-                                <AdventuringContainer initialRoute={adventure.routes.find(route => route.isInitialRoute)} />
+                                {adventure.routes ?
+                                    <AdventuringContainer initialRoute={adventure.routes ? adventure.routes.find(route => route.isInitialRoute) : null} />
+                                    : null
+                                }
+
                             </CardBody>
                         </Card>
                     </Col>
