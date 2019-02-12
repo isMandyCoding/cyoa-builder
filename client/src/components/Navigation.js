@@ -11,8 +11,8 @@ class Navigation extends Component {
         return (
             <Navbar>
                 <Nav>
-                    <NavLink tag={Link} to="/" >Home</NavLink>
-                    <NavLink tag={Link} to="/new/adventure" >Create Adventure</NavLink>
+                    <NavLink className="text-white" tag={Link} to="/" >Home</NavLink>
+                    <NavLink className="text-white" tag={Link} to="/new/adventure" >Create Adventure</NavLink>
                 </Nav>
             </Navbar>
         )

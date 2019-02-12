@@ -125,3 +125,8 @@ export const getScenes = routeId => {
         })
         .catch(err => console.log(err))
 }
+
+export const getDialogue = routeId => {
+    //need to alter backend route to give all associated dialogue for a route
+    fetch(``)
+}

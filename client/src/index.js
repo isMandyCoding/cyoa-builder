@@ -12,7 +12,7 @@ import NewAdventureForm from './components/NewAdventureForm';
 ReactDOM.render(
     <Provider store={store}>
         <Router>
-            <div>
+            <div style={{ backgroundColor: '#007F80' }} >
                 <Navigation />
 
                 <Route exact path="/" component={AdventuresListContainer} />
