@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Adventuring from '../../components/Adventuring'
-import { getAdventure } from '../actions/adventures'
+import { getAdventure, getDialogue } from '../actions/adventures'
 
 const mapStateToProps = state => {
     return {
@@ -14,6 +14,11 @@ const mapDispatchToProps = dispatch => {
         getAdventure: id => {
             dispatch(
                 getAdventure(id)
+            )
+        },
+        getDialogue: routeId => {
+            dispatch(
+                getDialogue(routeId)
             )
         }
     }
