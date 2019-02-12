@@ -24,7 +24,7 @@ export const getAdventure = id => {
                 fetch(`http://127.0.0.1:8000/adventures/routes/one/${routeId}`)
                     .then(routeScenes => routeScenes.json())
                     .then(jsonrouteScenes => {
-                        fetch()
+                        // fetch()
                         dispatch({
                             type: GET_ADVENTURE,
                             payload: adventure,

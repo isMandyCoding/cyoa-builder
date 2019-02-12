@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Adventure from './Adventure'
 import { Row } from 'reactstrap'
-import SearchBarContainer from '../redux/containers/'
+import SearchBarContainer from '../redux/containers/SearchBarContainer'
 
 class AdventuresList extends Component {
     componentDidMount() {
